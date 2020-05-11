@@ -18,7 +18,3 @@ inline fun <reified E : Enum<E>> EnumExtension<E>.valueOfWithCondition(condition
 
 inline fun <reified E : Enum<E>> EnumExtension<E>.valueOfIgnoreCase(name: String) =
     enumValues<E>().firstOrNull { it.name.toLowerCase() == name.toLowerCase() }
-
-inline fun <reified E: Enum<E>> Enum.Companion.a() {
-    enumValues<E>()[1]
-}
