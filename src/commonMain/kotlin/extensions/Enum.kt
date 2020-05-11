@@ -1,6 +1,6 @@
 package extensions
 
-interface EnumExtension<E: Enum<E>> {
+interface EnumExtension<E : Enum<E>> {
     companion object
 }
 

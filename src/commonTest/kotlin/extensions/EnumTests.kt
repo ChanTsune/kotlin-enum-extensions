@@ -8,8 +8,10 @@ class EnumTests {
         FIRST(1),
         SECOND(2),
         LAST(-1);
-        companion object: EnumExtension<E>
+
+        companion object : EnumExtension<E>
     }
+
     @Test
     fun testValueOfStringWithDefault() {
         assertEquals(
@@ -21,6 +23,7 @@ class EnumTests {
             E.valueOf("f", E.FIRST)
         )
     }
+
     @Test
     fun testValueOfIntWithDefault() {
         assertEquals(
@@ -32,11 +35,12 @@ class EnumTests {
             E.valueOf(100, E.LAST)
         )
     }
+
     @Test
     fun testValueOfWithCondition() {
         assertEquals(
             E.SECOND,
-            E.valueOfWithCondition{
+            E.valueOfWithCondition {
                 it.rawValue == 2
             }
         )
@@ -47,6 +51,7 @@ class EnumTests {
             }
         )
     }
+
     @Test
     fun testValueOfWithConditionWithDefault() {
         assertEquals(
