@@ -1,8 +1,6 @@
 package extensions
 
-interface EnumExtension<E : Enum<E>> {
-    companion object
-}
+interface EnumExtension<E : Enum<E>>
 
 inline fun <reified E : Enum<E>> EnumExtension<E>.valueOf(name: String, default: E) =
     enumValues<E>().firstOrNull { it.name == name } ?: default
