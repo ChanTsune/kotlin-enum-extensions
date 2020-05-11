@@ -67,4 +67,13 @@ class EnumTests {
             }, E.FIRST)
         )
     }
+
+    @Test
+    fun testValueOfIgnoreCase() {
+
+        assertEquals(
+            E.LAST,
+            E.valueOfIgnoreCase("last")
+        )
+    }
 }
