@@ -10,6 +10,8 @@ group = "com.example"
 version = "0.0.0"
 
 kotlin {
+    explicitApiWarning()
+
     jvm {
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
