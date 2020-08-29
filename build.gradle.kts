@@ -1,10 +1,13 @@
 plugins {
     kotlin("multiplatform") version "1.4.0"
 
+    id("org.jetbrains.dokka") version "1.4.0-rc"
+
     id("maven-publish")
 }
 repositories {
     mavenCentral()
+    jcenter()
 }
 group = "com.github.chantsune"
 version = "0.0.0"
@@ -60,5 +63,15 @@ kotlin {
         }
         val nativeMain by getting
         val nativeTest by getting
+    }
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory = "$buildDir/dokka/html"
+    dokkaSourceSets {
+        register("commonMain") {
+            displayName = "common"
+            platform = "common"
+        }
     }
 }
