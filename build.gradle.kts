@@ -74,4 +74,11 @@ tasks.dokkaHtml.configure {
             platform = "common"
         }
     }
+    doLast {
+        File("$outputDirectory/index.html").apply {
+            writeText("""
+            <html><script>document.location = "./${project.name}"</script></html>
+            """.trimIndent())
+        }
+    }
 }
