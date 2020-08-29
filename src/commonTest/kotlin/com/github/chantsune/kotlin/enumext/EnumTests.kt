@@ -1,4 +1,4 @@
-package extensions
+package com.github.chantsune.kotlin.enumext
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
