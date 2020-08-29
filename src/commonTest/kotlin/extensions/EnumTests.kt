@@ -2,6 +2,7 @@ package extensions
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class EnumTests {
     enum class E(val rawValue: Int) {
@@ -13,67 +14,66 @@ class EnumTests {
     }
 
     @Test
-    fun testValueOfStringWithDefault() {
+    fun testValueOfNameWithDefault() {
         assertEquals(
             E.SECOND,
-            E.valueOf("SECOND", E.LAST)
+            E.valueOf("SECOND", default = E.LAST)
         )
         assertEquals(
             E.FIRST,
-            E.valueOf("f", E.FIRST)
+            E.valueOf("not exist", default = E.FIRST)
         )
     }
 
     @Test
-    fun testValueOfIntWithDefault() {
-        assertEquals(
-            E.FIRST,
-            E.valueOf(0, E.LAST)
-        )
-        assertEquals(
-            E.LAST,
-            E.valueOf(100, E.LAST)
-        )
-    }
-
-    @Test
-    fun testValueOfWithCondition() {
-        assertEquals(
-            E.SECOND,
-            E.valueOfWithCondition {
-                it.rawValue == 2
-            }
-        )
-        assertEquals(
-            null,
-            E.valueOfWithCondition {
-                it.rawValue == 100
-            }
-        )
-    }
-
-    @Test
-    fun testValueOfWithConditionWithDefault() {
-        assertEquals(
-            E.FIRST,
-            E.valueOfWithCondition({
-                it.rawValue == 1
-            }, E.LAST)
-        )
-        assertEquals(
-            E.FIRST,
-            E.valueOfWithCondition({
-                it.rawValue == 100
-            }, E.FIRST)
-        )
-    }
-
-    @Test
-    fun testValueOfIgnoreCase() {
+    fun testValueOfNameWithIgnoreCase() {
 
         assertEquals(
             E.LAST,
-            E.valueOfIgnoreCase("last")
+            E.valueOf("last", default = E.FIRST, ignoreCase = true)
         )
+    }
+
+    @Test
+    fun testValueOfOrdinalWithDefault() {
+        assertEquals(
+            E.FIRST,
+            E.valueOf(0, default = E.LAST)
+        )
+        assertEquals(
+            E.LAST,
+            E.valueOf(100, default = E.LAST)
+        )
+    }
+
+    @Test
+    fun testValueOfPredicateWithDefault() {
+        assertEquals(
+            E.FIRST,
+            E.valueOf(E.LAST) { it.rawValue == 1 }
+        )
+        assertEquals(
+            E.FIRST,
+            E.valueOf(E.FIRST) { it.rawValue == 100 }
+        )
+    }
+
+    @Test
+    fun testValueOfOrNullName() {
+        assertNull(E.valueOfOrNull("not exist"))
+    }
+
+    @Test
+    fun testValueOfOrNullOrdinal() {
+        assertNull(E.valueOfOrNull(-100))
+    }
+
+    @Test
+    fun testValueOfOrNullPredicate() {
+        assertEquals(
+            E.SECOND,
+            E.valueOfOrNull { it.rawValue == 2 }
+        )
+        assertNull(E.valueOfOrNull { it.rawValue == 100 })
     }
 }
