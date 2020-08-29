@@ -6,7 +6,7 @@ plugins {
 repositories {
     mavenCentral()
 }
-group = "com.example"
+group = "com.github.chantsune"
 version = "0.0.0"
 
 kotlin {
