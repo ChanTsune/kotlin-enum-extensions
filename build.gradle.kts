@@ -67,7 +67,7 @@ kotlin {
 }
 
 tasks.dokkaHtml.configure {
-    outputDirectory = "$rootDir/docs"
+    outputDirectory = "$buildDir/dokka/html"
     dokkaSourceSets {
         register("commonMain") {
             displayName = "common"
