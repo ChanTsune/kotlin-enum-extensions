@@ -92,24 +92,31 @@ val dokkaJar by tasks.creating(Jar::class) {
     from(tasks.dokkaHtml)
 }
 
-fun MavenPom.initPom() {
-    name.set(project.name)
-    description.set("kotlin enum extension")
-    url.set("https://github.com/ChanTsune/kotlin-enum-extensions")
+publishing {
+    fun MavenPom.initPom() {
+        name.set(project.name)
+        description.set("kotlin enum extension")
+        url.set("https://github.com/ChanTsune/kotlin-enum-extensions")
 
-    licenses {
-        license {
-            name.set("MIT")
-            url.set("https://github.com/ChanTsune/kotlin-enum-extensions/blob/master/LICENSE")
-            distribution.set("repo")
-        }
-        scm {
-            url.set("https://github.com/ChanTsune/kotlin-enum-extensions.git")
+        licenses {
+            license {
+                name.set("MIT")
+                url.set("https://github.com/ChanTsune/kotlin-enum-extensions/blob/master/LICENSE")
+                distribution.set("repo")
+            }
+            scm {
+                url.set("https://github.com/ChanTsune/kotlin-enum-extensions.git")
+            }
         }
     }
-}
-
-publishing {
+    publications.all {
+        when(this) {
+            is MavenPublication -> {
+                artifact(dokkaJar)
+                pom.initPom()
+            }
+        }
+    }
     repositories {
         maven {
             name = "bintray"
