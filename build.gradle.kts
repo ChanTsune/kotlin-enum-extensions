@@ -1,3 +1,5 @@
+import org.gradle.api.publish.maven.MavenPom
+
 plugins {
     kotlin("multiplatform") version "1.4.0"
 
@@ -10,7 +12,7 @@ repositories {
     jcenter()
 }
 group = "com.github.chantsune"
-version = "0.0.0"
+version = "0.0.0-alpha0"
 
 kotlin {
     explicitApiWarning()
@@ -79,6 +81,47 @@ tasks.dokkaHtml.configure {
             writeText("""
             <html><script>document.location = "./${project.name}"</script></html>
             """.trimIndent())
+        }
+    }
+}
+
+val dokkaJar by tasks.creating(Jar::class) {
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    description = "Assembles Kotlin docs with Dokka"
+    archiveClassifier.set("javadoc")
+    from(tasks.dokkaHtml)
+}
+
+fun MavenPom.initPom() {
+    name.set(project.name)
+    description.set("kotlin enum extension")
+    url.set("https://github.com/ChanTsune/kotlin-enum-extensions")
+
+    licenses {
+        license {
+            name.set("MIT")
+            url.set("https://github.com/ChanTsune/kotlin-enum-extensions/blob/master/LICENSE")
+            distribution.set("repo")
+        }
+        scm {
+            url.set("https://github.com/ChanTsune/kotlin-enum-extensions.git")
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "bintray"
+            val bintrayUsername = "chantsune"
+            val bintrayRepoName = "kotlin-enum-extensions"
+            val bintrayPackageName = "com.github.chantsune.kotlin.enumext"
+            setUrl("https://api.bintray.com/content/$bintrayUsername/$bintrayRepoName/$bintrayPackageName/${project.version};publish=0;override=1")
+
+            credentials {
+                username = project.findProperty("bintray_user") as String?
+                password = project.findProperty("bintray_key") as String?
+            }
         }
     }
 }
