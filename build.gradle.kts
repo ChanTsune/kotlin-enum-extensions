@@ -34,14 +34,13 @@ kotlin {
         nodejs {
         }
     }
-    val hostOs = System.getProperty("os.name")
-    val isMingwX64 = hostOs.startsWith("Windows")
-    val nativeTarget = when {
-        hostOs == "Mac OS X" -> macosX64("native")
-        hostOs == "Linux" -> linuxX64("native")
-        isMingwX64 -> mingwX64("native")
-        else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
-    }
+    macosX64()
+    linuxX64()
+    mingwX64()
+    ios()
+    tvos()
+    watchos()
+    wasm32()
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
@@ -63,8 +62,6 @@ kotlin {
                 implementation(kotlin("test-js"))
             }
         }
-        val nativeMain by getting
-        val nativeTest by getting
     }
 }
 
@@ -91,6 +88,9 @@ val dokkaJar by tasks.creating(Jar::class) {
     archiveClassifier.set("javadoc")
     from(tasks.dokkaHtml)
 }
+val sourceJar by tasks.creating(Jar::class) {
+    archiveClassifier.set("sources")
+}
 
 publishing {
     fun MavenPom.initPom() {
@@ -109,14 +109,12 @@ publishing {
             }
         }
     }
-    publications.all {
-        when(this) {
-            is MavenPublication -> {
-                artifact(dokkaJar)
-                pom.initPom()
-            }
-        }
+    publications.withType<MavenPublication>().all {
+        artifact(dokkaJar)
+        pom.initPom()
     }
+    publications.withType<MavenPublication>().find { it.name == "kotlinMultiplatform" }?.artifact(sourceJar)
+
     repositories {
         maven {
             name = "bintray"
