@@ -36,7 +36,12 @@ kotlin {
     }
     macosX64()
     linuxX64()
+    linuxArm64()
+    linuxArm32Hfp()
+    linuxMips32()
+    linuxMipsel32()
     mingwX64()
+    mingwX86()
     ios()
     tvos()
     watchos()
@@ -93,6 +98,15 @@ val sourceJar by tasks.creating(Jar::class) {
 }
 
 publishing {
+    fun getProperty(propertyName:String, envName:String): String? {
+        return findProperty(propertyName) as? String ?: System.getenv(envName)
+    }
+    fun getBintrayUser(): String? {
+        return getProperty("bintray_user", "BINTRAY_USER")
+    }
+    fun getBintrayKey(): String? {
+        return getProperty("bintray_key", "BINTRAY_KEY")
+    }
     fun MavenPom.initPom() {
         name.set(project.name)
         description.set("kotlin enum extension")
@@ -124,8 +138,8 @@ publishing {
             setUrl("https://api.bintray.com/content/$bintrayUsername/$bintrayRepoName/$bintrayPackageName/${project.version};publish=0;override=1")
 
             credentials {
-                username = project.findProperty("bintray_user") as String?
-                password = project.findProperty("bintray_key") as String?
+                username = getBintrayUser()
+                password = getBintrayKey()
             }
         }
     }
