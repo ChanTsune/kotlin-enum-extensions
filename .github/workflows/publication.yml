@@ -2,6 +2,7 @@ name: Publication
 
 on:
   push:
+    branches:
     - publication/*
   release:
     types:
