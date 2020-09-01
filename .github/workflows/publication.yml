@@ -1,0 +1,44 @@
+name: Publication
+
+on:
+  push:
+    - publication/*
+  release:
+    types:
+      - created
+      - published
+      - edited
+
+jobs:
+  publish_unix_general:
+    name: publish_general
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - name: run publication
+        run: ./gradlew clean publishAllPublicationsToMavenRepository
+    env:
+      BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+      BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
+
+  publish_win:
+    name: publish_windows_platform
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - name: run publication
+        run: ./gradlew clean publishMingwX64PublicationToMavenRepository publishMingwX86PublicationToMavenRepository
+    env:
+      BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+      BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
+
+  publish_apple:
+    name: publish_apple_platform
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - name: run publication
+        run: ./gradlew clean publishIosArm32PublicationToMavenRepository publishIosArm64PublicationToMavenRepository publishIosX64PublicationToMavenRepository publishMacosX64PublicationToMavenRepository publishWatchosArm32PublicationToMavenRepository publishWatchosArm64PublicationToMavenRepository publishWatchosX86PublicationToMavenRepository publishTvosArm64PublicationToMavenRepository publishTvosX64PublicationToMavenRepository
+    env:
+      BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+      BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
