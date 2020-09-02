@@ -34,9 +34,14 @@ kotlin {
         nodejs {
         }
     }
-    macosX64()
     linuxX64()
+    linuxArm64()
+    linuxArm32Hfp()
+    linuxMips32()
+    linuxMipsel32()
     mingwX64()
+    mingwX86()
+    macosX64()
     ios()
     tvos()
     watchos()
@@ -75,9 +80,11 @@ tasks.dokkaHtml.configure {
     }
     doLast {
         File("$outputDirectory/index.html").apply {
-            writeText("""
+            writeText(
+                """
             <html><script>document.location = "./${project.name}"</script></html>
-            """.trimIndent())
+            """.trimIndent()
+            )
         }
     }
 }
@@ -92,7 +99,45 @@ val sourceJar by tasks.creating(Jar::class) {
     archiveClassifier.set("sources")
 }
 
+tasks.create("publishAppleToMavenLocal") {
+    group = "publishing"
+    tasks.withType<PublishToMavenLocal> {
+        if (name.contains("Tvos")
+            || name.contains("Ios")
+            || name.contains("Watchos")
+            || name.contains("Macos")
+        ) {
+            this@create.dependsOn.add(this)
+        }
+    }
+}
+
+tasks.create("publishAppleToBintrayRepository") {
+    group = "publishing"
+    tasks.withType<PublishToMavenRepository> {
+        if (name.contains("Tvos")
+            || name.contains("Ios")
+            || name.contains("Watchos")
+            || name.contains("Macos")
+        ) {
+            this@create.dependsOn.add(this)
+        }
+    }
+}
+
 publishing {
+    fun getProperty(propertyName: String, envName: String): String? {
+        return findProperty(propertyName) as? String ?: System.getenv(envName)
+    }
+
+    fun getBintrayUser(): String? {
+        return getProperty("bintray_user", "BINTRAY_USER")
+    }
+
+    fun getBintrayKey(): String? {
+        return getProperty("bintray_key", "BINTRAY_KEY")
+    }
+
     fun MavenPom.initPom() {
         name.set(project.name)
         description.set("kotlin enum extension")
@@ -124,8 +169,8 @@ publishing {
             setUrl("https://api.bintray.com/content/$bintrayUsername/$bintrayRepoName/$bintrayPackageName/${project.version};publish=0;override=1")
 
             credentials {
-                username = project.findProperty("bintray_user") as String?
-                password = project.findProperty("bintray_key") as String?
+                username = getBintrayUser()
+                password = getBintrayKey()
             }
         }
     }
