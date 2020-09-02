@@ -50,3 +50,24 @@ public inline fun <reified E : Enum<E>> EnumExtension<E>.valueOf(ordinal: Int, d
 public inline fun <reified E : Enum<E>> EnumExtension<E>.valueOf(default: E, predicate: (E) -> Boolean): E {
     return enumValueOf(default, predicate)
 }
+
+/**
+ * Return an enum entry matching the given [predicate], or throw `Exception` if entry was not found.
+ */
+public inline fun <reified E : Enum<E>> EnumExtension<E>.valueOf(predicate: (E) -> Boolean): E {
+    return enumValueOf(predicate)
+}
+
+/**
+ * Returns an enum entry with specified [name], or throw `Exception` if entry was not found.
+ */
+public inline fun <reified E : Enum<E>> EnumExtension<E>.valueOf(name: String, ignoreCase: Boolean): E {
+    return enumValueOf(name, ignoreCase)
+}
+
+/**
+ * Returns an enum entry with specified [ordinal], or throw `Exception` if entry was not found.
+ */
+public inline fun <reified E : Enum<E>> EnumExtension<E>.valueOf(ordinal: Int): E {
+    return enumValueOf(ordinal)
+}

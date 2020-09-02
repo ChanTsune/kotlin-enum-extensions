@@ -42,3 +42,24 @@ public inline fun <reified E : Enum<E>> enumValueOf(ordinal: Int, default: E): E
 public inline fun <reified E : Enum<E>> enumValueOf(default: E, predicate: (E) -> Boolean): E {
     return enumValueOfOrNull<E>(predicate) ?: default
 }
+
+/**
+ * Return an enum entry matching the given [predicate], or throw `Exception` if entry was not found.
+ */
+public inline fun <reified E : Enum<E>> enumValueOf(predicate: (E) -> Boolean): E {
+    return enumValueOfOrNull<E>(predicate) ?: throw Exception("No enum constant matching given predicate")
+}
+
+/**
+ * Returns an enum entry with specified [name], or throw `Exception` if entry was not found.
+ */
+public inline fun <reified E : Enum<E>> enumValueOf(name: String, ignoreCase: Boolean = false): E {
+    return enumValueOfOrNull<E>(name, ignoreCase) ?: throw  Exception("No enum constant name is $name")
+}
+
+/**
+ * Returns an enum entry with specified [ordinal], or throw `Exception` if entry was not found.
+ */
+public inline fun <reified E : Enum<E>> enumValueOf(ordinal: Int): E {
+    return enumValueOfOrNull<E>(ordinal) ?: throw Exception("No enum constant ordinal is $ordinal")
+}
