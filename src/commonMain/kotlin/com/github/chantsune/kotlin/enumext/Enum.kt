@@ -25,7 +25,7 @@ public inline fun <reified E : Enum<E>> enumValueOfOrNull(ordinal: Int): E? {
 /**
  * Returns an enum entry with specified [name], or [default] if entry was not found.
  */
-public inline fun <reified E : Enum<E>> enumValueOf(name: String, default: E, ignoreCase: Boolean): E {
+public inline fun <reified E : Enum<E>> enumValueOf(name: String, default: E, ignoreCase: Boolean = false): E {
     return enumValueOfOrNull<E>(name, ignoreCase) ?: default
 }
 
