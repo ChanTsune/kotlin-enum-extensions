@@ -2,6 +2,7 @@ package com.github.chantsune.kotlin.enumext
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 
 class EnumTests {
@@ -75,5 +76,29 @@ class EnumTests {
             E.valueOfOrNull { it.rawValue == 2 }
         )
         assertNull(E.valueOfOrNull { it.rawValue == 100 })
+    }
+
+    @Test
+    fun testValueOfName() {
+        assertFailsWith<Exception> {
+            E.valueOf { it.name == "" }
+        }
+    }
+
+    @Test
+    fun testValueOfOrdinal() {
+        assertFailsWith<Exception> {
+            E.valueOf("a", ignoreCase = true)
+        }
+        assertFailsWith<Exception> {
+            E.valueOf("a", ignoreCase = false)
+        }
+    }
+
+    @Test
+    fun testValueOfPredicate() {
+        assertFailsWith<Exception> {
+            E.valueOf(-100)
+        }
     }
 }
