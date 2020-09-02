@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.2
       - name: run publication
-        run: ./gradlew clean publishIosArm32PublicationToBintrayRepository publishIosArm64PublicationToBintrayRepository publishIosX64PublicationToBintrayRepository publishMacosX64PublicationToBintrayRepository publishWatchosArm32PublicationToBintrayRepository publishWatchosArm64PublicationToBintrayRepository publishWatchosX86PublicationToBintrayRepository publishTvosArm64PublicationToBintrayRepository publishTvosX64PublicationToBintrayRepository
+        run: ./gradlew clean publishAppleToBintrayRepository
     env:
       BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
       BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
