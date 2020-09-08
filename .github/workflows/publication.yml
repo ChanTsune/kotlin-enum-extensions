@@ -16,6 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.2
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: run publication
         run: ./gradlew clean publishAllPublicationsToBintrayRepository
     env:
@@ -27,6 +35,14 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2.3.2
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: run publication
         run: ./gradlew clean publishMingwX64PublicationToBintrayRepository publishMingwX86PublicationToBintrayRepository
     env:
@@ -38,6 +54,14 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2.3.2
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
       - name: run publication
         run: ./gradlew clean publishAppleToBintrayRepository
     env:
