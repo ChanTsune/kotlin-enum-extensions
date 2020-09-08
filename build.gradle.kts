@@ -98,6 +98,7 @@ val dokkaJar by tasks.creating(Jar::class) {
 val sourceJar by tasks.creating(Jar::class) {
     archiveClassifier.set("sources")
 }
+val emptyJar by tasks.creating(Jar::class)
 
 tasks.create("publishAppleToMavenLocal") {
     group = "publishing"
@@ -158,7 +159,10 @@ publishing {
         artifact(dokkaJar)
         pom.initPom()
     }
-    publications.withType<MavenPublication>().find { it.name == "kotlinMultiplatform" }?.artifact(sourceJar)
+    publications.withType<MavenPublication>().find { it.name == "kotlinMultiplatform" }?.apply {
+        artifact(sourceJar)
+        artifact(emptyJar)
+    }
 
     repositories {
         maven {
