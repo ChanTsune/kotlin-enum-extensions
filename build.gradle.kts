@@ -12,7 +12,7 @@ repositories {
     jcenter()
 }
 group = "com.github.chantsune"
-version = "0.0.0-alpha1"
+version = "0.0.0"
 
 kotlin {
     explicitApiWarning()
