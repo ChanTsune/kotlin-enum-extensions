@@ -3,7 +3,7 @@ import org.gradle.api.publish.maven.MavenPom
 plugins {
     kotlin("multiplatform") version "1.4.0"
 
-    id("org.jetbrains.dokka") version "1.4.0-rc"
+    id("org.jetbrains.dokka") version "1.4.0"
 
     id("maven-publish")
 }
@@ -71,15 +71,9 @@ kotlin {
 }
 
 tasks.dokkaHtml.configure {
-    outputDirectory = "$buildDir/dokka/html"
-    dokkaSourceSets {
-        register("commonMain") {
-            displayName = "common"
-            platform = "common"
-        }
-    }
     doLast {
-        File("$outputDirectory/index.html").apply {
+        val outputDir = outputDirectory.get().absolutePath
+        File("$outputDir/index.html").apply {
             writeText(
                 """
             <html><script>document.location = "./${project.name}"</script></html>
