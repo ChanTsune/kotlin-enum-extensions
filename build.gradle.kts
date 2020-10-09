@@ -34,6 +34,10 @@ kotlin {
         nodejs {
         }
     }
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX64()
+    androidNativeX86()
     linuxX64()
     linuxArm64()
     linuxArm32Hfp()
