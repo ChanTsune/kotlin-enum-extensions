@@ -93,29 +93,22 @@ val sourceJar by tasks.creating(Jar::class) {
     archiveClassifier.set("sources")
 }
 
+val String.isAppleOS: Boolean get() = contains("Tvos")
+        || contains("Ios")
+        || contains("Watchos")
+        || contains("Macos")
+
 tasks.create("publishAppleToMavenLocal") {
     group = "publishing"
-    tasks.withType<PublishToMavenLocal> {
-        if (name.contains("Tvos")
-            || name.contains("Ios")
-            || name.contains("Watchos")
-            || name.contains("Macos")
-        ) {
-            this@create.dependsOn.add(this)
-        }
+    tasks.withType<PublishToMavenLocal>().filter { it.name.isAppleOS }.all {
+        dependsOn.add(it)
     }
 }
 
 tasks.create("publishAppleToBintrayRepository") {
     group = "publishing"
-    tasks.withType<PublishToMavenRepository> {
-        if (name.contains("Tvos")
-            || name.contains("Ios")
-            || name.contains("Watchos")
-            || name.contains("Macos")
-        ) {
-            this@create.dependsOn.add(this)
-        }
+    tasks.withType<PublishToMavenRepository>().filter { it.name.isAppleOS }.all {
+        dependsOn.add(it)
     }
 }
 
