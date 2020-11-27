@@ -17,4 +17,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: run test
-        run: ./gradlew allTests
+        run: ./gradlew clean allTests publishToMavenLocal
