@@ -1,4 +1,4 @@
-name: "Create Github Release"
+name: "Release"
 
 on:
   push:
@@ -18,4 +18,34 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: '${{secrets.GITHUB_TOKEN}}'
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+
+  publish:
+    needs: release
+    if: ${{ needs.release.outputs.created == 'true' }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            publish_command: publishAllPublicationsToBintrayRepository
+          - os: macos-latest
+            publish_command: publishMingwX64PublicationToBintrayRepository publishMingwX86PublicationToBintrayRepository
+          - os: windows-latest
+            publish_command: publishAppleToBintrayRepository
+    name: publish
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: run publication
+        run: ./gradlew clean ${{ matrix.publish_command }}
+    env:
+      BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+      BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
