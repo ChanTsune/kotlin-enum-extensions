@@ -18,3 +18,5 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: run test
         run: ./gradlew allTests
+      - name: run test
+        run: ./gradlew publishToMavenLocal
