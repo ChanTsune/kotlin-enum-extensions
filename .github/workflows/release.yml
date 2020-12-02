@@ -32,9 +32,9 @@ jobs:
           - os: ubuntu-latest
             publish_command: publishAllPublicationsToBintrayRepository
           - os: macos-latest
-            publish_command: publishMingwX64PublicationToBintrayRepository publishMingwX86PublicationToBintrayRepository
-          - os: windows-latest
             publish_command: publishAppleToBintrayRepository
+          - os: windows-latest
+            publish_command: publishMingwX64PublicationToBintrayRepository publishMingwX86PublicationToBintrayRepository
     name: publish
     runs-on: ${{ matrix.os }}
     steps:
