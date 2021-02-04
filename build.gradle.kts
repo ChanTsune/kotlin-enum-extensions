@@ -150,9 +150,6 @@ publishing {
         artifact(dokkaJar)
         pom.initPom()
     }
-    publications.withType<MavenPublication>().find { it.name == "kotlinMultiplatform" }?.apply {
-        artifact(sourceJar)
-    }
 
     repositories {
         maven {
