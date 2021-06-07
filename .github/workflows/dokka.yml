@@ -23,7 +23,7 @@ jobs:
       - name: Build Dokka
         run: ./gradlew dokkaHtml
       - name: Deploy Dokka
-        uses: JamesIves/github-pages-deploy-action@4.1.3
+        uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
