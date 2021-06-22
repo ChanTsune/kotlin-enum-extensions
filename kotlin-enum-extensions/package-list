@@ -1,5 +1,24 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
-
+$dokka.location:com.github.chantsune.kotlin.enumext////PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/index.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOf/#TypeParam(bounds=[kotlin.Enum[^]])#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOf/#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOf/#kotlin.Int#TypeParam(bounds=[kotlin.Enum[^]])/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOf/#kotlin.Int/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOf/#kotlin.String#TypeParam(bounds=[kotlin.Enum[^]])#kotlin.Boolean/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOf/#kotlin.String#kotlin.Boolean/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOfOrNull/#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of-or-null.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOfOrNull/#kotlin.Int/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of-or-null.html
+$dokka.location:com.github.chantsune.kotlin.enumext//enumValueOfOrNull/#kotlin.String#kotlin.Boolean/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/enum-value-of-or-null.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOf/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#TypeParam(bounds=[kotlin.Enum[^]])#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOf/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOf/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.Int#TypeParam(bounds=[kotlin.Enum[^]])/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOf/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.Int/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOf/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.String#TypeParam(bounds=[kotlin.Enum[^]])#kotlin.Boolean/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOf/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.String#kotlin.Boolean/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOfOrNull/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of-or-null.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOfOrNull/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.Int/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of-or-null.html
+$dokka.location:com.github.chantsune.kotlin.enumext//valueOfOrNull/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.String#kotlin.Boolean/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of-or-null.html
+$dokka.location:com.github.chantsune.kotlin.enumext/EnumExtension///PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/-enum-extension/index.html
 com.github.chantsune.kotlin.enumext
 
