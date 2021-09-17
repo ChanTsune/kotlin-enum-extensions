@@ -164,5 +164,13 @@ publishing {
                 password = getBintrayKey()
             }
         }
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ChanTsune/kotlin-enum-extensions")
+            credentials {
+                username = getProperty("gpr.user","GITHUB_ACTOR")
+                password = getProperty("gpr.key","GITHUB_TOKEN")
+            }
+        }
     }
 }

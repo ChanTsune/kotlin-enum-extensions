@@ -1,0 +1,34 @@
+name: "Release"
+
+on:
+  push:
+    branches:
+      - actions
+jobs:
+  publish:
+    needs: release
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            publish_command: publishAllPublicationsToGitHubPackagesRepository
+          - os: macos-latest
+            publish_command: publishAppleToGitHubPackagesRepository
+          - os: windows-latest
+            publish_command: publishMingwX64PublicationToGitHubPackagesRepository publishMingwX86PublicationToGitHubPackagesRepository
+    name: publish
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: run publication
+        run: ./gradlew clean ${{ matrix.publish_command }}
+    env:
+      GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
