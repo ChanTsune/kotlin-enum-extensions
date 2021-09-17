@@ -103,17 +103,11 @@ val String.isAppleOS: Boolean get() = contains("Tvos")
         || contains("Watchos")
         || contains("Macos")
 
-tasks.create("publishAppleToMavenLocal") {
-    group = "publishing"
-    tasks.withType<PublishToMavenLocal>().filter { it.name.isAppleOS }.all {
-        dependsOn.add(it)
-    }
-}
-
-tasks.create("publishAppleToBintrayRepository") {
-    group = "publishing"
-    tasks.withType<PublishToMavenRepository>().filter { it.name.isAppleOS }.all {
-        dependsOn.add(it)
+fun String.beginWithUpperCase(): String {
+    return when (length) {
+        0 -> ""
+        1 -> toUpperCase()
+        else -> first().toUpperCase() + substring(1)
     }
 }
 
@@ -171,6 +165,22 @@ publishing {
                 username = getProperty("gpr.user","GITHUB_ACTOR")
                 password = getProperty("gpr.key","GITHUB_TOKEN")
             }
+        }
+    }
+}
+
+tasks.create("publishAppleToMavenLocal") {
+    group = "publishing"
+    tasks.withType<PublishToMavenLocal>().filter { it.name.isAppleOS }.all {
+        dependsOn.add(it)
+    }
+}
+
+publishing.repositories.all {
+    tasks.create("publishAppleTo${name.beginWithUpperCase()}Repository") {
+        group = "publishing"
+        tasks.withType<PublishToMavenRepository>().filter { it.name.isAppleOS }.all {
+            dependsOn.add(it)
         }
     }
 }
