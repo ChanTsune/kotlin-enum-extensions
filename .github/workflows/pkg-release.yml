@@ -6,7 +6,6 @@ on:
       - actions
 jobs:
   publish:
-    needs: release
     strategy:
       matrix:
         include:
