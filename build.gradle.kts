@@ -147,18 +147,6 @@ publishing {
 
     repositories {
         maven {
-            name = "bintray"
-            val bintrayUsername = "chantsune"
-            val bintrayRepoName = "kotlin-enum-extensions"
-            val bintrayPackageName = "com.github.chantsune.kotlin.enumext"
-            setUrl("https://api.bintray.com/content/$bintrayUsername/$bintrayRepoName/$bintrayPackageName/${project.version};publish=0;override=1")
-
-            credentials {
-                username = getBintrayUser()
-                password = getBintrayKey()
-            }
-        }
-        maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/ChanTsune/kotlin-enum-extensions")
             credentials {
