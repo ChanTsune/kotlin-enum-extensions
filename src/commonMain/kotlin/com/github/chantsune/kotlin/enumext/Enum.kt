@@ -40,14 +40,14 @@ public inline fun <reified E : Enum<E>> enumValueOf(ordinal: Int, default: E): E
  * Returns an enum entry matching the given [predicate], or [default] if entry was not found.
  */
 public inline fun <reified E : Enum<E>> enumValueOf(default: E, predicate: (E) -> Boolean): E {
-    return enumValueOfOrNull<E>(predicate) ?: default
+    return enumValueOfOrNull(predicate) ?: default
 }
 
 /**
  * Return an enum entry matching the given [predicate], or throw `Exception` if entry was not found.
  */
 public inline fun <reified E : Enum<E>> enumValueOf(predicate: (E) -> Boolean): E {
-    return enumValueOfOrNull<E>(predicate) ?: throw Exception("No enum constant matching given predicate")
+    return enumValueOfOrNull(predicate) ?: throw Exception("No enum constant matching given predicate")
 }
 
 /**
