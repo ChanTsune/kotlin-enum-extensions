@@ -11,8 +11,7 @@ public inline fun <reified E : Enum<E>> enumValueOfOrNull(predicate: (E) -> Bool
  * Returns an enum entry with specified [name], or `null` if entry was not found.
  */
 public inline fun <reified E : Enum<E>> enumValueOfOrNull(name: String, ignoreCase: Boolean = false): E? {
-    return if (ignoreCase) enumValueOfOrNull<E> { it.name.toLowerCase() == name.toLowerCase() }
-    else enumValueOfOrNull<E> { it.name == name }
+    return enumValueOfOrNull<E> { it.name.equals(name, ignoreCase) }
 }
 
 /**
