@@ -49,6 +49,6 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: run publication
         run: ./gradlew clean ${{ matrix.publish_command }}
-    env:
-      BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-      BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
+        env:
+          BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
+          BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
