@@ -1,7 +1,7 @@
 import org.gradle.api.publish.maven.MavenPom
 
 plugins {
-    kotlin("multiplatform") version "1.7.22"
+    kotlin("multiplatform") version "1.8.10"
 
     id("org.jetbrains.dokka") version "1.7.20"
 
@@ -23,12 +23,11 @@ kotlin {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
-    js {
+    js(IR) {
         browser {
             testTask {
                 useKarma {
                     useChromeHeadless()
-                    webpackConfig.cssSupport.enabled = true
                 }
             }
         }
