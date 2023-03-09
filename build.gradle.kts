@@ -23,12 +23,11 @@ kotlin {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
-    js {
+    js(IR) {
         browser {
             testTask {
                 useKarma {
                     useChromeHeadless()
-                    webpackConfig.cssSupport.enabled = true
                 }
             }
         }
