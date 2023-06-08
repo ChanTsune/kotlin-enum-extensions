@@ -3,7 +3,7 @@ import org.gradle.api.publish.maven.MavenPom
 plugins {
     kotlin("multiplatform") version "1.8.22"
 
-    id("org.jetbrains.dokka") version "1.8.10"
+    id("org.jetbrains.dokka") version "1.8.20"
 
     id("maven-publish")
 }
