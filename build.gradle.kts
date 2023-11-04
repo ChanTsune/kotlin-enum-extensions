@@ -76,7 +76,7 @@ kotlin {
 
 tasks.dokkaHtml.configure {
     doLast {
-        val outputDir = outputDirectory.get().absolutePath
+        val outputDir = outputDirectory.get().asFile.absolutePath
         File("$outputDir/index.html").apply {
             writeText(
                 """
