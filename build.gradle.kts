@@ -1,7 +1,7 @@
 import org.gradle.api.publish.maven.MavenPom
 
 plugins {
-    kotlin("multiplatform") version "1.9.10"
+    kotlin("multiplatform") version "1.9.20"
 
     id("org.jetbrains.dokka") version "1.9.10"
 
@@ -40,16 +40,11 @@ kotlin {
     androidNativeX86()
     linuxX64()
     linuxArm64()
-    linuxArm32Hfp()
-    linuxMips32()
-    linuxMipsel32()
     mingwX64()
-    mingwX86()
     macosX64()
     ios()
     tvos()
     watchos()
-    wasm32()
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
