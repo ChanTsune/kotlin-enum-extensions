@@ -3,7 +3,7 @@ import org.gradle.api.publish.maven.MavenPom
 plugins {
     kotlin("multiplatform") version "1.9.10"
 
-    id("org.jetbrains.dokka") version "1.8.10"
+    id("org.jetbrains.dokka") version "1.9.10"
 
     id("maven-publish")
 }
@@ -76,7 +76,7 @@ kotlin {
 
 tasks.dokkaHtml.configure {
     doLast {
-        val outputDir = outputDirectory.get().absolutePath
+        val outputDir = outputDirectory.get().asFile.absolutePath
         File("$outputDir/index.html").apply {
             writeText(
                 """
