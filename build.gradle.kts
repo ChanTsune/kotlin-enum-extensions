@@ -9,7 +9,6 @@ plugins {
 }
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 group = "com.github.chantsune"
