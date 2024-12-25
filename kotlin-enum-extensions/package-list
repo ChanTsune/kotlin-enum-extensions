@@ -21,4 +21,3 @@ $dokka.location:com.github.chantsune.kotlin.enumext//valueOfOrNull/com.github.ch
 $dokka.location:com.github.chantsune.kotlin.enumext//valueOfOrNull/com.github.chantsune.kotlin.enumext.EnumExtension[TypeParam(bounds=[kotlin.Enum[^]])]#kotlin.String#kotlin.Boolean/PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/value-of-or-null.html
 $dokka.location:com.github.chantsune.kotlin.enumext/EnumExtension///PointingToDeclaration/kotlin-enum-extensions/com.github.chantsune.kotlin.enumext/-enum-extension/index.html
 com.github.chantsune.kotlin.enumext
-
