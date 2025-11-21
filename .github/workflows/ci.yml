@@ -9,7 +9,7 @@ jobs:
     env:
       GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=2g -Dkotlin.daemon.jvm.options=-Xmx1500m"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/cache@v4
         with:
           path: |
